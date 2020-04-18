@@ -22,9 +22,10 @@ urlpatterns = [
 
     path("", views.index, name="ShopHome"),
     path("about/", views.about, name="AboutUs"),
-    path("contact/", views.contact, name="ContactUs"),
-    path("search/", views.search, name="Search"),
+    path("prodView/", views.prodView, name="ProdView"),
+    path("tracker/", views.tracker, name="Tracker"),
     path("checkout/", views.checkout, name="Checkout"),
-    path("tracker/", views.tracker, name="Tracker")
+    path("contact/", views.contact, name="ContactUs"),
+    path("search/", views.search, name="Search")   
 ]
 
