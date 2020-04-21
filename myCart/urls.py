@@ -20,10 +20,12 @@ from django.urls import path, include
 #used for managing media or image to media file
 from django.conf import settings
 from django.conf.urls.static import static  
+from.import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('shop/', include('shop.urls')),
+    path('',views.index),
     path('blog/', include('blog.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
