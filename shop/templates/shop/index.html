@@ -53,7 +53,7 @@
           <div class="card" style="width: 18rem;">
             <img src='/media/{{i.image}}' class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title" id="namepr{{i.id}}">{{i.product_name}}</h5>
+              <h5 class="card-title" id="namepr{{i.id}}">{{i.pro_name}}</h5>
               <h5 class="card-title">PRICE {{i.price}}rs.</h5>
               <p class="card-text">{{i.pro_desc}}</p>
               <!-- here in class 'cart' is a class which is used in js&j-quiry  after click on cart button -->
@@ -100,6 +100,7 @@ if (localStorage.getItem('cart') == null) {
 $('.divpr').on( 'click', 'button.cart',function() {
     var idstr = this.id.toString();
     if (cart[idstr] != undefined) {
+      
         qty = cart[idstr][0]+1;
     } else {
         qty = 1;
