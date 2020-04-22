@@ -26,3 +26,12 @@
 </div>
 
 {% endblock %}
+{% block js %}
+<script>
+{% if thank %}
+alert('Thanks for Contact us. We solve your problem as soon as possible');
+localStorage.clear();
+document.location = "/shop";
+{% endif %}
+</script>
+{% endblock %}
