@@ -14,10 +14,17 @@
     border: 0px;
     }
   body .carousel-indicator li{
-  background-color: blue;
+  background-color: red;
   }
+  body {
+  height: 100%;
+  background-attachment: fixed;
+  background-size: cover;
+  bachground-color:Ghost;
+}
+
   body .carousel-indicators{
-  bottom: 0;
+  bottom: -40px;
   }
   body .carousel-control-prev-icon,
   body .carousel-control-next-icon{
@@ -54,7 +61,7 @@
             <img src='/media/{{i.image}}' class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title" id="namepr{{i.id}}">{{i.pro_name}}</h5>
-              <h5 class="card-title">PRICE {{i.price}}rs.</h5>
+              <p class="card-title"><b>PRICE {{i.price}}rs.</b></p>
               <p class="card-text">{{i.pro_desc}}</p>
               <!-- here in class 'cart' is a class which is used in js&j-quiry  after click on cart button -->
               <span id="divpr{{i.id}}" class="divpr">
@@ -95,7 +102,11 @@ if (localStorage.getItem('cart') == null) {
     cart = JSON.parse(localStorage.getItem('cart'));
     document.getElementById('cart').innerHTML = Object.keys(cart).length;
     updateCart(cart);
-}
+}{% if thank %}
+alert('Thanks for ordering with us. Your order is {{id}}. Use it to track your order using our order tracker');
+localStorage.clear();
+document.location = "/shop";
+{% endif %}
 // If the add to cart button is clicked, add/increment the item
 $('.divpr').on( 'click', 'button.cart',function() {
     var idstr = this.id.toString();
@@ -104,6 +115,7 @@ $('.divpr').on( 'click', 'button.cart',function() {
         qty = cart[idstr][0]+1;
     } else {
         qty = 1;
+       // price = document.getElementById('price'+idstr).innerHTML;
         name = document.getElementById('name'+idstr).innerHTML;
         cart[idstr] = [qty, name];
     }
