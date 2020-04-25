@@ -26,6 +26,8 @@ urlpatterns = [
     path("tracker/", views.tracker, name="Tracker"),
     path("checkout/", views.checkout, name="Checkout"),
     path("contact/", views.contact, name="ContactUs"),
-    path("search/", views.search, name="Search")   
+    path("search/", views.search, name="Search"), 
+    path("handlerequest/", views.handlerequest, name="HandleRequest"),
+  
 ]
 
