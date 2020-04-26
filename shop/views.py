@@ -54,7 +54,7 @@ def tracker(request):
                 return HttpResponse(response)
             else:
                 return HttpResponse('{}')
-        except Exception as e:
+        except Exception :
             return HttpResponse('{}')
 
     return render(request, 'shop/tracker.html')
