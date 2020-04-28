@@ -24,22 +24,22 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item {% block homeactive %}{% endblock homeactive%}">
         <a class="nav-link" href="/shop">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {% block aboutactive %} {% endblock aboutactive%}">
         <a class="nav-link" href="/shop/about">About Us</a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item {% block trackeractive %}{% endblock trackeractive%}">
         <a class="nav-link" href="/shop/tracker">Tracker</a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item {% block blogactive %}{% endblock blogactive%}">
         <a class="nav-link" href="/blog">Blog</a>
       </li>
 
-       <li class="nav-item">
+       <li class="nav-item {% block contactactive %}{% endblock contactactive%}">
         <a class="nav-link" href="/shop/contact">Contact Us</a>
       </li>
 
