@@ -10,8 +10,6 @@ from django.contrib import messages
 # Create your views here.
 from django.http import HttpResponse
 MERCHANT_KEY = 'Your-Merchant-Key-Here'
-
-
 # Create your views here.
 from django.http import HttpResponse
 
@@ -159,31 +157,30 @@ def signup(request):
         # checkpoints 
         #username length checker
         if len(username) > 12 :
-            messages.error(request,'Your account not created Because')
-            messages.error(request,'Username must have maximum 12 Charcters')
-            messages.error(request,'Please fill SIGN UP form again')
+            messages.error(request,'Username must have maximum 12 Charcters Please try again')
             return redirect('/shop')
 
         # username charkters checker
         if not username.isalnum() :
-             messages.error(request,'Your account not created Because')
-             messages.error(request,'Username only contain alphaNumeric value')
-             messages.error(request,'Please fill SIGN UP form again')
+             messages.error(request,'Username only contain alphaNumeric value Please try again')
              return redirect('/shop')       
 
         # password1 and password2 checker     
         if password != password2 :
-            messages.error(request,'Your account not created Because')
-            messages.error(request,'Passwords do not match')
-            messages.error(request,'Please fill SIGN UP form again')
+            messages.error(request,'Passwords do not match Please try again')
             return redirect('/shop')
         # creating user
-        myuser = User.objects.create_user(username=username,email=email,password=password)
-        myuser.first_name= fname
-        myuser.last_name= lname
-        myuser.save()
-        messages.success(request,'Your account created succesfully')
-        return redirect('/shop')
+        try:
+            myuser=User.objects.get(username=username)
+            messages.error(request,'The username you entered has already been taken. Please try another username.')
+            return redirect('/shop')
+        except:
+            myuser = User.objects.create_user(username=username,email=email,password=password)
+            myuser.first_name= fname
+            myuser.last_name= lname
+            myuser.save()
+            messages.success(request,'Your account created succesfully')
+            return redirect('/shop')
     else:
         return HttpResponse('404 - Not Found')
 
