@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 # Create your views here.
 from django.http import HttpResponse
-MERCHANT_KEY = 'Your-Merchant-Key-Here'
+MERCHANT_KEY = 'P0yIZM@2#ZNWj_0@'
 # Create your views here.
 from django.http import HttpResponse
 
@@ -106,7 +106,7 @@ def checkout(request):
         # Request paytm to transfer the amount to your account after payment by user
         param_dict = {
 
-                'MID': 'Your-Merchant-Id-Here',
+                'MID': 'JnwvRC31616981408214',
                 'ORDER_ID': str(order.order_id),
                 'TXN_AMOUNT': str(amount),
                 'CUST_ID': email,
