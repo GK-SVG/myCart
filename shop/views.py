@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 # Create your views here.
 from django.http import HttpResponse
-MERCHANT_KEY = 'P0yIZM@2#ZNWj_0@'
+MERCHANT_KEY = 'MJs5tlGfwOMzMTQ@'
 # Create your views here.
 from django.http import HttpResponse
 
@@ -106,7 +106,7 @@ def checkout(request):
         # Request paytm to transfer the amount to your account after payment by user
         param_dict = {
 
-                'MID': 'JnwvRC31616981408214',
+                'MID': 'toaldV34834751882298',
                 'ORDER_ID': str(order.order_id),
                 'TXN_AMOUNT': str(amount),
                 'CUST_ID': email,
@@ -135,10 +135,11 @@ def handlerequest(request):
     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
     if verify:
         if response_dict['RESPCODE'] == '01':
-            print('order successful')
+            order_success=messages.success(request,'Order Succeccful')
         else:
+            order_success=messages.error(request,f'order was not successful because')
             print('order was not successful because' + response_dict['RESPMSG'])
-    return render(request, 'shop/paymentstatus.html', {'response': response_dict})
+    return render(request, 'shop/paymentstatus.html', {'response': response_dict,'order_success':order_success})
 
 def prodView(request,myid):
     product = Product.objects.filter(id=myid)
