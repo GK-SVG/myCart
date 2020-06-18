@@ -102,12 +102,10 @@ def checkout(request):
                        state=state, zip_code=zip_code, phone=phone,amount=amount)
         order.save()
         id = order.order_id
-        # return render(request, 'shop/checkout.html', {'thank':thank, 'id': id})
-        # Request paytm to transfer the amount to your account after payment by user
         param_dict = {
 
                 'MID': 'toaldV34834751882298',
-                'ORDER_ID': str(order.order_id),
+                'ORDER_ID': str(id),
                 'TXN_AMOUNT': str(amount),
                 'CUST_ID': email,
                 'INDUSTRY_TYPE_ID': 'Retail',
@@ -135,9 +133,9 @@ def handlerequest(request):
     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
     if verify:
         if response_dict['RESPCODE'] == '01':
-            order_success=messages.success(request,'Order Succeccful')
+            print('order success full')
         else:
-            order_success=messages.error(request,f'order was not successful because')
+            #order_success=messages.error(request,f'order was not successful because {response_dict[RESPMSG]}')
             print('order was not successful because' + response_dict['RESPMSG'])
     return render(request, 'shop/paymentstatus.html', {'response': response_dict,'order_success':order_success})
 
