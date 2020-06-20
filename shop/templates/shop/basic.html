@@ -16,7 +16,6 @@
     {% endblock %}
   </style>
 </head>
-
 <body>
   {% load static %}
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -47,35 +46,12 @@
         <li class="nav-item {% block contactactive %}{% endblock contactactive%}">
           <a class="nav-link" href="/shop/contact">Contact Us</a>
         </li>
-
-
       </ul>
       <form method='get' action='/shop/search/' class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search"
           id="search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-      {% if user.is_authenticated %}
-      <ul class="navbar-nav ml-2">
-        <li class="nav-item dropdown">
-          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Welcome {{request.user}}
-          </a>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="/shop/logout/">Logout</a></div>
-        </li>
-      </ul>
-      {% else %}
-      <!-- Button to trigger sign up  modal -->
-      <button type="button" class="btn btn-success mx-1" data-toggle="modal" data-target="#signupModal">
-        Sign Up
-      </button>
-      <!-- Button to trigger log in  modal -->
-      <button type="button" class="btn btn-success mx-1" data-toggle="modal" data-target="#loginModal">
-        Log In
-      </button>
-      {% endif %}
+      </form>     
       <button type="button" class="btn btn-secondary mx-2" id="popcart" data-container="body" data-toggle="popover"
         data-placement="bottom" data-html="true" data-content="Vivamus
          sagittis lacus vel augue laoreet rutrum faucibus.">Cart(<span id="cart">0</span>)
@@ -89,88 +65,13 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  {% endfor %}
-  <!--Sign UP Modal -->
-  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="signupModal">Sign Up Here</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="/shop/signup/" method="post">
-            <div class="form-group">
-              <label for="username">UserName</label>
-              <input type="text" class="form-control" id="username" name="username"
-                placeholder="username only AlphaNumeric" Required>
-            </div>
-            <div class="form-group">
-              <label for="fname">First Nmae</label>
-              <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" Required>
-            </div>
-            <div class="form-group">
-              <label for="lname">Last Name</label>
-              <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" Required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email address</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" Required>
-            </div>
-            <div class="form-group">
-              <label for="pass1">Password</label>
-              <input type="password" class="form-control" id="pass1" name="pass1" placeholder="enter password" Required>
-            </div>
-            <div class="form-group">
-              <label for="pass2">Cofirm Password</label>
-              <input type="password" class="form-control" id="pass2" name="pass2" placeholder="enter password again"
-                Required>
-            </div>
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--Log in  Modal -->
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="loginModal">Sign Up Here</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="/shop/login/" method="post">
-            <div class="form-group">
-              <label for="loginusername">UserName</label>
-              <input type="text" class="form-control" id="loginusername" name="loginusername"
-                placeholder="name@example.com" Required>
-            </div>
-            <div class="form-group">
-              <label for="loginpassword">Password</label>
-              <input type="password" class="form-control" id="loginpassword" name="loginpassword"
-                placeholder="enter password" Required>
-            </div>
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% endfor %} 
   {% block body %} {% endblock %}
   <!--Add the code below-->
   <footer class="container my-30px">
     <div class="row">
       <p class="col-sm-4 ">&copy; 2020 <img src="{% static "shop/shopping.jpg" %}"
           style="width:3em;height:3em;"><b>myShop</p>
-
     </div>
   </footer>
 
